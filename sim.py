@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 
 # Hyperparameters (all lengths in meters)
-L = 10  # Length of arena
-H = 10  # Width of arena
+L = 1  # Length of arena
+H = 1  # Width of arena
 
 B_x = 0     # Earth's magnetic field, replace later
 B_y = 1
@@ -128,18 +128,18 @@ def paperbot():
 
     # Matthew
     init_state = (0.0, 0.0, 45.0)
-    left_wheel = [150, 175, 200, 175, 100, 250, 225, 300, 300, 150]
-    right_wheel = [-100, -150, -250, -275, -180, -100, -250, -300, -275, -300]
+    right_wheel = read_data('wheel_data/matthew_right.txt')
+    left_wheel = read_data('wheel_data/matthew_left.txt')
 
 
 
     input_list = []
     for i in np.arange(len(left_wheel)):
         left_rad = left_wheel[i] * np.pi / 180
-        right_rad = right_wheel[i] * np.pi / 180
+        right_rad = right_wheel[i] * np.pi / -180
         input_list.append((left_rad, right_rad))
 
-    delta_t = 0.5   #length of time step
+    delta_t = 0.01   #length of time step
 
     state_list, sensor_list = simulate(input_list, init_state, delta_t, d_paper, w_paper)
     plot_path(state_list, "Matthew Paperbot")
@@ -151,17 +151,17 @@ def paperbot():
         x_coord.append(state_list[i][0] - init_state[0])
         y_coord.append(state_list[i][1] - init_state[1])
 
-    print(x_coord)
-    print()
-    print(y_coord)
+    #print(x_coord)
+    #print()
+    #print(y_coord)
 
 
 
 
     # Ryan
     init_state = (0.0, 0.0, 45.0)
-    right_wheel = [250, 500, 500, 500, 400, 250, 100, 0, 100, 150]
-    left_wheel = [250, 500, 400, 300, 450, 500, 200, 400, 350, 50]
+    right_wheel = read_data('wheel_data/ryan_right.txt')
+    left_wheel = read_data('wheel_data/ryan_left.txt')
 
 
     input_list = []
@@ -170,7 +170,7 @@ def paperbot():
         right_rad = right_wheel[i] * np.pi / -180
         input_list.append((left_rad, right_rad))
 
-    delta_t = 0.5   #length of time step
+    delta_t = 0.01   #length of time step
 
     state_list, sensor_list = simulate(input_list, init_state, delta_t, d_paper, w_paper)
     plot_path(state_list, "Ryan Paperbot")
@@ -187,13 +187,12 @@ def paperbot():
     print(y_coord)
 
 
-
-
-
+    '''
+ 
     # Remy
     init_state = (0.0, 0.0, 45.0)
-    left_wheel = [400, 0, 100, 150, 200, 250, 250, 250, 200,150]
-    right_wheel = [400, 100, 100, 50, 0, -50, -100, -150, -200, -250]
+    right_wheel = read_data('wheel_data/remy_right.txt')
+    left_wheel = read_data('wheel_data/remy_left.txt')
 
 
     input_list = []
@@ -202,7 +201,7 @@ def paperbot():
         right_rad = right_wheel[i] * np.pi / -180
         input_list.append((left_rad, right_rad))
 
-    delta_t = 0.5   #length of time step
+    delta_t = 0.01   #length of time step
 
     state_list, sensor_list = simulate(input_list, init_state, delta_t, d_paper, w_paper)
     plot_path(state_list, "Remy Paperbot")
@@ -214,9 +213,11 @@ def paperbot():
         x_coord.append(state_list[i][0])
         y_coord.append(state_list[i][1])
 
-    print(x_coord)
-    print()
-    print(y_coord)
+    #print(x_coord)
+    #print()
+    #print(y_coord)
+
+    '''
 
 
 
@@ -224,8 +225,8 @@ def paperbot():
 
     # Gwen
     init_state = (0.2, 0.3, 45.0)
-    right_wheel = [50,200,100,200,300,300,400,100,200,50]
-    left_wheel = [100,200,200,400,400,100,100,-50,100,100]
+    right_wheel = read_data('wheel_data/gwen_right.txt')
+    left_wheel = read_data('wheel_data/gwen_left.txt')
 
 
     input_list = []
@@ -234,7 +235,7 @@ def paperbot():
         right_rad = right_wheel[i] * np.pi / -180
         input_list.append((left_rad, right_rad))
 
-    delta_t = 1.0   #length of time step
+    delta_t = 0.01   #length of time step
 
     state_list, sensor_list = simulate(input_list, init_state, delta_t, d_paper, w_paper)
     plot_path(state_list, "Gwen Paperbot")
@@ -246,9 +247,10 @@ def paperbot():
         x_coord.append(state_list[i][0] - init_state[0])
         y_coord.append(state_list[i][1] - init_state[1])
 
-    print(x_coord)
-    print()
-    print(y_coord)
+    #print(x_coord)
+    #print()
+    #print(y_coord)
+
 
 
 
@@ -258,8 +260,8 @@ def segway():
 
     # Matthew
     init_state = (0.0, 0.0, 45.0)
-    left_wheel = [150, 175, 200, 175, 100, 250, 225, 300, 300, 150]
-    right_wheel = [-100, -150, -250, -275, -180, -100, -250, -300, -275, -300]
+    right_wheel = read_data('matthew_right.txt')
+    left_wheel = read_data('matthew_left.txt')
 
 
 
@@ -269,7 +271,7 @@ def segway():
         right_rad = right_wheel[i] * np.pi / 180
         input_list.append((left_rad, right_rad))
 
-    delta_t = 0.5   #length of time step
+    delta_t = 0.01   #length of time step
 
     state_list, sensor_list = simulate(input_list, init_state, delta_t, d_seg, w_seg)
     plot_path(state_list, "Matthew Segway")
@@ -290,8 +292,8 @@ def segway():
 
     # Ryan
     init_state = (0.0, 0.0, 45.0)
-    right_wheel = [250, 500, 500, 500, 400, 250, 100, 0, 100, 150]
-    left_wheel = [250, 500, 400, 300, 450, 500, 200, 400, 350, 50]
+    right_wheel = read_data('ryan_seg_right.txt')
+    left_wheel = read_data('ryan_seg_left.txt')
 
 
     input_list = []
@@ -300,7 +302,7 @@ def segway():
         right_rad = right_wheel[i] * np.pi / -180
         input_list.append((left_rad, right_rad))
 
-    delta_t = 0.5   #length of time step
+    delta_t = 0.01   #length of time step
 
     state_list, sensor_list = simulate(input_list, init_state, delta_t, d_seg, w_seg)
     plot_path(state_list, "Ryan Segway")
@@ -318,12 +320,12 @@ def segway():
 
 
 
-
+    '''
 
     # Remy
     init_state = (0.0, 0.0, 45.0)
-    left_wheel = [400, 0, 100, 150, 200, 250, 250, 250, 200,150]
-    right_wheel = [400, 100, 100, 50, 0, -50, -100, -150, -200, -250]
+    right_wheel = read_data('remy_right.txt')
+    left_wheel = read_data('remy_left.txt')
 
 
     input_list = []
@@ -332,7 +334,7 @@ def segway():
         right_rad = right_wheel[i] * np.pi / -180
         input_list.append((left_rad, right_rad))
 
-    delta_t = 0.5   #length of time step
+    delta_t = 0.01   #length of time step
 
     state_list, sensor_list = simulate(input_list, init_state, delta_t, d_seg, w_seg)
     plot_path(state_list, "Remy Segway")
@@ -354,8 +356,8 @@ def segway():
 
     # Gwen
     init_state = (2, 3, 45.0)
-    right_wheel = [50,200,100,200,300,300,400,100,200,50]
-    left_wheel = [100,200,200,400,400,100,100,-50,100,100]
+    right_wheel = read_data('gwen_right.txt')
+    left_wheel = read_data('gwen_left.txt')
 
 
     input_list = []
@@ -364,7 +366,7 @@ def segway():
         right_rad = right_wheel[i] * np.pi / -180
         input_list.append((left_rad, right_rad))
 
-    delta_t = 1.0   #length of time step
+    delta_t = 0.01   #length of time step
 
     state_list, sensor_list = simulate(input_list, init_state, delta_t, d_seg, w_seg)
     plot_path(state_list, "Gwen Segway")
@@ -379,8 +381,31 @@ def segway():
     print(x_coord)
     print()
     print(y_coord)
+    '''
+
+
+
+def read_data(datafile):
+    f = open(datafile, 'r')
+    data_str = f.readlines()
+    data = []
+    for i in np.arange(len(data_str)):
+        data_str[i] = data_str[i].replace('\n', '')
+        data.append(float(data_str[i]))
+
+    
+    return data
+
+
+def write_data(filename, data):
+    f = open(filename, 'w')
+    data_str = []
+    for i in np.arange(len(data)):
+        data_str.append(str(data[i]) + '\n')
+    f.writelines(data_str)
+    
+    
 
 
 if __name__ == "__main__":
     paperbot()
-    segway()
