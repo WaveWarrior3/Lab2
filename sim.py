@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 
 # Hyperparameters (all lengths in meters)
-L = 1  # Length of arena
-H = 1  # Width of arena
+L = 10  # Length of arena
+H = 10  # Width of arena
 
 B_x = 0     # Earth's magnetic field, replace later
 B_y = 1
@@ -224,7 +224,7 @@ def paperbot():
 
 
     # Gwen
-    init_state = (0.2, 0.3, 45.0 * np.pi / 180)
+    init_state = (0.2, 0.3, 0.0 * np.pi / 180)
     right_wheel = read_data('wheel_data/gwen_right.txt')
     left_wheel = read_data('wheel_data/gwen_left.txt')
 
@@ -260,15 +260,15 @@ def segway():
 
     # Matthew
     init_state = (0.0, 0.0, 45.0 * np.pi / 180)
-    right_wheel = read_data('matthew_right.txt')
-    left_wheel = read_data('matthew_left.txt')
+    right_wheel = read_data('wheel_data/matthew_right.txt')
+    left_wheel = read_data('wheel_data/matthew_left.txt')
 
 
 
     input_list = []
     for i in np.arange(len(left_wheel)):
         left_rad = left_wheel[i] * np.pi / 180
-        right_rad = right_wheel[i] * np.pi / 180
+        right_rad = right_wheel[i] * np.pi / -180
         input_list.append((left_rad, right_rad))
 
     delta_t = 0.01   #length of time step
@@ -292,8 +292,8 @@ def segway():
 
     # Ryan
     init_state = (0.0, 0.0, 45.0 * np.pi / 180)
-    right_wheel = read_data('ryan_seg_right.txt')
-    left_wheel = read_data('ryan_seg_left.txt')
+    right_wheel = read_data('wheel_data/ryan_seg_right.txt')
+    left_wheel = read_data('wheel_data/ryan_seg_left.txt')
 
 
     input_list = []
@@ -320,12 +320,12 @@ def segway():
 
 
 
-    '''
+    
 
     # Remy
     init_state = (0.0, 0.0, 45.0 * np.pi / 180)
-    right_wheel = read_data('remy_right.txt')
-    left_wheel = read_data('remy_left.txt')
+    right_wheel = read_data('wheel_data/remy_right.txt')
+    left_wheel = read_data('wheel_data/remy_left.txt')
 
 
     input_list = []
@@ -355,9 +355,9 @@ def segway():
 
 
     # Gwen
-    init_state = (0.0, 0.0, 45.0 * np.pi / 180)
-    right_wheel = read_data('gwen_right.txt')
-    left_wheel = read_data('gwen_left.txt')
+    init_state = (2.0, 2.0, 0.0 * np.pi / 180)
+    right_wheel = read_data('wheel_data/gwen_right.txt')
+    left_wheel = read_data('wheel_data/gwen_left.txt')
 
 
     input_list = []
@@ -381,7 +381,7 @@ def segway():
     print(x_coord)
     print()
     print(y_coord)
-    '''
+    
 
 
 
@@ -408,4 +408,4 @@ def write_data(filename, data):
 
 
 if __name__ == "__main__":
-    paperbot()
+    segway()
