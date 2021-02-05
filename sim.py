@@ -5,41 +5,41 @@ import matplotlib.pyplot as plt
 
 
 # Hyperparameters (all lengths in meters)
-L = 1  # Length of arena
-H = 1  # Width of arena
+L = 10  # Length of arena
+H = 10  # Width of arena
 
 B_x = 0     # Earth's magnetic field, replace later
 B_y = 1
 
 
 # Paperbot
-d = 0.05    # wheel diameter
-w = 0.09    # width of robot
+d_paper = 0.05    # wheel diameter
+w_paper = 0.09    # width of robot
 
-'''
+
 # Segway
-d = 0.502
-w = 0.53
-'''
+d_seg = 0.502
+w_seg = 0.53
+
 
 
 
 # run a full simulation
-def simulate(input_list, init_state, delta_t):
+def simulate(input_list, init_state, delta_t, d, w):
     state_list = []
     sensor_list = []
     
     state = init_state
     for inputs in input_list:
         state_list.append(state)
-        state, sensor = simulate_step(state, inputs, delta_t)
+        state, sensor = simulate_step(state, inputs, delta_t, d, w)
         sensor_list.append(sensor)
     
     return state_list, sensor_list
 
 
 # simulate one time step
-def simulate_step(state_k, input_k, delta_t):
+def simulate_step(state_k, input_k, delta_t, d, w):
     '''
     Inputs:
     state_t: tuple of x, y, and theta at time k, in that order
@@ -105,7 +105,7 @@ def simulate_step(state_k, input_k, delta_t):
 
 
 
-def plot_path(state_list):
+def plot_path(state_list, title):
     x = []
     y = []
 
@@ -119,34 +119,268 @@ def plot_path(state_list):
     f.set_figheight(5)
     f.set_figwidth(5)
     plt.plot(x,y)
-    plt.title("Path of Car")
+    plt.title(title)
     plt.show()
 
     
+def paperbot():
+    #PAPERBOTS
+
+    # Matthew
+    init_state = (0.0, 0.0, 45.0)
+    left_wheel = [0, 150, 175, 200, 175, 100, 250, 225, 300, 300, 150]
+    right_wheel = [0, -100, -150, -250, -275, -180, -100, -250, -300, -275, -300]
+
+
+
+    input_list = []
+    for i in np.arange(len(left_wheel)):
+        left_rad = left_wheel[i] * np.pi / 180
+        right_rad = right_wheel[i] * np.pi / 180
+        input_list.append((left_rad, right_rad))
+
+    delta_t = 0.5   #length of time step
+
+    state_list, sensor_list = simulate(input_list, init_state, delta_t, d_paper, w_paper)
+    plot_path(state_list, "Matthew Paperbot")
+
+    x_coord = []
+    y_coord = []
+
+    for i in np.arange(len(state_list)):
+        x_coord.append(state_list[i][0] - init_state[0])
+        y_coord.append(state_list[i][1] - init_state[1])
+
+    print(x_coord)
+    print()
+    print(y_coord)
+
+
+
+
+    # Ryan
+    init_state = (0.0, 0.0, 45.0)
+    right_wheel = [0, 250, 500, 500, 500, 400, 250, 100, 0, 100, 150]
+    left_wheel = [0, 250, 500, 400, 300, 450, 500, 200, 400, 350, 50]
+
+
+    input_list = []
+    for i in np.arange(len(left_wheel)):
+        left_rad = left_wheel[i] * np.pi / 180
+        right_rad = right_wheel[i] * np.pi / -180
+        input_list.append((left_rad, right_rad))
+
+    delta_t = 0.5   #length of time step
+
+    state_list, sensor_list = simulate(input_list, init_state, delta_t, d_paper, w_paper)
+    plot_path(state_list, "Ryan Paperbot")
+    
+    x_coord = []
+    y_coord = []
+
+    for i in np.arange(len(state_list)):
+        x_coord.append(state_list[i][0])
+        y_coord.append(state_list[i][1])
+
+    print(x_coord)
+    print()
+    print(y_coord)
+
+
+
+
+
+    # Remy
+    init_state = (0.0, 0.0, 45.0)
+    left_wheel = [0, 400, 0, 100, 150, 200, 250, 250, 250, 200,150]
+    right_wheel = [0, 400, 100, 100, 50, 0, -50, -100, -150, -200, -250]
+
+
+    input_list = []
+    for i in np.arange(len(left_wheel)):
+        left_rad = left_wheel[i] * np.pi / 180
+        right_rad = right_wheel[i] * np.pi / -180
+        input_list.append((left_rad, right_rad))
+
+    delta_t = 0.5   #length of time step
+
+    state_list, sensor_list = simulate(input_list, init_state, delta_t, d_paper, w_paper)
+    plot_path(state_list, "Remy Paperbot")
+    
+    x_coord = []
+    y_coord = []
+
+    for i in np.arange(len(state_list)):
+        x_coord.append(state_list[i][0])
+        y_coord.append(state_list[i][1])
+
+    print(x_coord)
+    print()
+    print(y_coord)
+
+
+
+
+
+    # Gwen
+    init_state = (0.2, 0.3, 45.0)
+    right_wheel = [0,50,200,100,200,300,300,400,100,200,50]
+    left_wheel = [0,100,200,200,400,400,100,100,-50,100,100]
+
+
+    input_list = []
+    for i in np.arange(len(left_wheel)):
+        left_rad = left_wheel[i] * np.pi / 180
+        right_rad = right_wheel[i] * np.pi / -180
+        input_list.append((left_rad, right_rad))
+
+    delta_t = 1.0   #length of time step
+
+    state_list, sensor_list = simulate(input_list, init_state, delta_t, d_paper, w_paper)
+    plot_path(state_list, "Gwen Paperbot")
+    
+    x_coord = []
+    y_coord = []
+
+    for i in np.arange(len(state_list)):
+        x_coord.append(state_list[i][0] - init_state[0])
+        y_coord.append(state_list[i][1] - init_state[1])
+
+    print(x_coord)
+    print()
+    print(y_coord)
+
+
+
+
+def segway():
+    # SEGWAY
+
+    # Matthew
+    init_state = (0.0, 0.0, 45.0)
+    left_wheel = [0, 150, 175, 200, 175, 100, 250, 225, 300, 300, 150]
+    right_wheel = [0, -100, -150, -250, -275, -180, -100, -250, -300, -275, -300]
+
+
+
+    input_list = []
+    for i in np.arange(len(left_wheel)):
+        left_rad = left_wheel[i] * np.pi / 180
+        right_rad = right_wheel[i] * np.pi / 180
+        input_list.append((left_rad, right_rad))
+
+    delta_t = 0.5   #length of time step
+
+    state_list, sensor_list = simulate(input_list, init_state, delta_t, d_seg, w_seg)
+    plot_path(state_list, "Matthew Segway")
+
+    x_coord = []
+    y_coord = []
+
+    for i in np.arange(len(state_list)):
+        x_coord.append(state_list[i][0] - init_state[0])
+        y_coord.append(state_list[i][1] - init_state[1])
+
+    print(x_coord)
+    print()
+    print(y_coord)
+
+
+
+
+    # Ryan
+    init_state = (0.0, 0.0, 45.0)
+    right_wheel = [0, 250, 500, 500, 500, 400, 250, 100, 0, 100, 150]
+    left_wheel = [0, 250, 500, 400, 300, 450, 500, 200, 400, 350, 50]
+
+
+    input_list = []
+    for i in np.arange(len(left_wheel)):
+        left_rad = left_wheel[i] * np.pi / 180
+        right_rad = right_wheel[i] * np.pi / -180
+        input_list.append((left_rad, right_rad))
+
+    delta_t = 0.5   #length of time step
+
+    state_list, sensor_list = simulate(input_list, init_state, delta_t, d_seg, w_seg)
+    plot_path(state_list, "Ryan Segway")
+    
+    x_coord = []
+    y_coord = []
+
+    for i in np.arange(len(state_list)):
+        x_coord.append(state_list[i][0])
+        y_coord.append(state_list[i][1])
+
+    print(x_coord)
+    print()
+    print(y_coord)
+
+
+
+
+
+    # Remy
+    init_state = (0.0, 0.0, 45.0)
+    left_wheel = [0, 400, 0, 100, 150, 200, 250, 250, 250, 200,150]
+    right_wheel = [0, 400, 100, 100, 50, 0, -50, -100, -150, -200, -250]
+
+
+    input_list = []
+    for i in np.arange(len(left_wheel)):
+        left_rad = left_wheel[i] * np.pi / 180
+        right_rad = right_wheel[i] * np.pi / -180
+        input_list.append((left_rad, right_rad))
+
+    delta_t = 0.5   #length of time step
+
+    state_list, sensor_list = simulate(input_list, init_state, delta_t, d_seg, w_seg)
+    plot_path(state_list, "Remy Segway")
+    
+    x_coord = []
+    y_coord = []
+
+    for i in np.arange(len(state_list)):
+        x_coord.append(state_list[i][0])
+        y_coord.append(state_list[i][1])
+
+    print(x_coord)
+    print()
+    print(y_coord)
+
+
+
+
+
+    # Gwen
+    init_state = (2, 3, 45.0)
+    right_wheel = [0,50,200,100,200,300,300,400,100,200,50]
+    left_wheel = [0,100,200,200,400,400,100,100,-50,100,100]
+
+
+    input_list = []
+    for i in np.arange(len(left_wheel)):
+        left_rad = left_wheel[i] * np.pi / 180
+        right_rad = right_wheel[i] * np.pi / -180
+        input_list.append((left_rad, right_rad))
+
+    delta_t = 1.0   #length of time step
+
+    state_list, sensor_list = simulate(input_list, init_state, delta_t, d_seg, w_seg)
+    plot_path(state_list, "Gwen Segway")
+    
+    x_coord = []
+    y_coord = []
+
+    for i in np.arange(len(state_list)):
+        x_coord.append(state_list[i][0] - init_state[0])
+        y_coord.append(state_list[i][1] - init_state[1])
+
+    print(x_coord)
+    print()
+    print(y_coord)
 
 
 if __name__ == "__main__":
-    init_state = (0.5, 0.5, 0.0)
-    input_list = []
-    for i in np.arange(100):
-        input_list.append((1.0, -0.2))
-
-    for i in np.arange(100):
-        input_list.append((1.0, -1.0))
-
-    for i in np.arange(100):
-        input_list.append((0.2, -1.0))
-
-    for i in np.arange(500):
-        input_list.append((1.0, -1.0))
-
-    print("Input Data: (Left Wheel (+ is forward), Right Wheel (- is forward))")
-    print("(1.0, -0.2) for 100 time steps")
-    print("(1.0, -1.0) for 100 time steps")
-    print("(0.2, -1.0) for 100 time steps")
-    print("(1.0, -1.0) for 500 time steps")
-
-    delta_t = 0.1   #length of time step
-
-    state_list, sensor_list = simulate(input_list, init_state, delta_t)
-    plot_path(state_list)
+    paperbot()
+    segway()
