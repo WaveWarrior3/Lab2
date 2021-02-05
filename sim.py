@@ -127,7 +127,7 @@ def paperbot():
     #PAPERBOTS
 
     # Matthew
-    init_state = (0.0, 0.0, 45.0)
+    init_state = (0.0, 0.0, 45.0 * np.pi / 180)
     right_wheel = read_data('wheel_data/matthew_right.txt')
     left_wheel = read_data('wheel_data/matthew_left.txt')
 
@@ -151,15 +151,15 @@ def paperbot():
         x_coord.append(state_list[i][0] - init_state[0])
         y_coord.append(state_list[i][1] - init_state[1])
 
-    #print(x_coord)
-    #print()
-    #print(y_coord)
+    print(x_coord)
+    print()
+    print(y_coord)
 
 
 
 
     # Ryan
-    init_state = (0.0, 0.0, 45.0)
+    init_state = (0.0, 0.0, 45.0 * np.pi / 180)
     right_wheel = read_data('wheel_data/ryan_right.txt')
     left_wheel = read_data('wheel_data/ryan_left.txt')
 
@@ -177,23 +177,20 @@ def paperbot():
     
     x_coord = []
     y_coord = []
-    theta_coord = []
 
     for i in np.arange(len(state_list)):
-        x_coord.append(state_list[i][0])
-        y_coord.append(state_list[i][1])
-        theta_coord.append(state_list[i][2])
+        x_coord.append(state_list[i][0] - init_state[0])
+        y_coord.append(state_list[i][1] - init_state[1])
 
-    ##print(x_coord)
-    #print()
-    #print(y_coord)
+    print(x_coord)
+    print()
+    print(y_coord)
 
-    print(theta_coord)
 
-    '''
+    
  
     # Remy
-    init_state = (0.0, 0.0, 45.0)
+    init_state = (0.0, 0.0, 45.0 * np.pi / 180)
     right_wheel = read_data('wheel_data/remy_right.txt')
     left_wheel = read_data('wheel_data/remy_left.txt')
 
@@ -213,21 +210,21 @@ def paperbot():
     y_coord = []
 
     for i in np.arange(len(state_list)):
-        x_coord.append(state_list[i][0])
-        y_coord.append(state_list[i][1])
+        x_coord.append(state_list[i][0] - init_state[0])
+        y_coord.append(state_list[i][1] - init_state[1])
 
-    #print(x_coord)
-    #print()
-    #print(y_coord)
+    print(x_coord)
+    print()
+    print(y_coord)
 
-    '''
+    
 
 
 
 
 
     # Gwen
-    init_state = (0.2, 0.3, 45.0)
+    init_state = (0.2, 0.3, 45.0 * np.pi / 180)
     right_wheel = read_data('wheel_data/gwen_right.txt')
     left_wheel = read_data('wheel_data/gwen_left.txt')
 
@@ -262,7 +259,7 @@ def segway():
     # SEGWAY
 
     # Matthew
-    init_state = (0.0, 0.0, 45.0)
+    init_state = (0.0, 0.0, 45.0 * np.pi / 180)
     right_wheel = read_data('matthew_right.txt')
     left_wheel = read_data('matthew_left.txt')
 
@@ -294,7 +291,7 @@ def segway():
 
 
     # Ryan
-    init_state = (0.0, 0.0, 45.0)
+    init_state = (0.0, 0.0, 45.0 * np.pi / 180)
     right_wheel = read_data('ryan_seg_right.txt')
     left_wheel = read_data('ryan_seg_left.txt')
 
@@ -314,8 +311,8 @@ def segway():
     y_coord = []
 
     for i in np.arange(len(state_list)):
-        x_coord.append(state_list[i][0])
-        y_coord.append(state_list[i][1])
+        x_coord.append(state_list[i][0] - init_state[0])
+        y_coord.append(state_list[i][1] - init_state[1])
 
     print(x_coord)
     print()
@@ -326,7 +323,7 @@ def segway():
     '''
 
     # Remy
-    init_state = (0.0, 0.0, 45.0)
+    init_state = (0.0, 0.0, 45.0 * np.pi / 180)
     right_wheel = read_data('remy_right.txt')
     left_wheel = read_data('remy_left.txt')
 
@@ -346,8 +343,8 @@ def segway():
     y_coord = []
 
     for i in np.arange(len(state_list)):
-        x_coord.append(state_list[i][0])
-        y_coord.append(state_list[i][1])
+        x_coord.append(state_list[i][0] - init_state[0])
+        y_coord.append(state_list[i][1] - init_state[1])
 
     print(x_coord)
     print()
@@ -358,7 +355,7 @@ def segway():
 
 
     # Gwen
-    init_state = (2, 3, 45.0)
+    init_state = (0.0, 0.0, 45.0 * np.pi / 180)
     right_wheel = read_data('gwen_right.txt')
     left_wheel = read_data('gwen_left.txt')
 
